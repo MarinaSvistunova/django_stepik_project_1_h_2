@@ -8,4 +8,5 @@ urlpatterns = [
     path('departure/<str:departure_name>/', DepartureView.as_view(), name="departure_view"),
     path('tour/<int:id>/', TourView.as_view(), name="tour_view"),
     path('admin/', admin.site.urls),
+    path(settings.STATIC_URL, document_root=settings.STATIC_ROOT),
 ]

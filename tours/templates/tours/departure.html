@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSSDesk</title>
+    <style type="text/css">
+      body {
+        background-color: #2574b0;
+      }
+    </style>
+  </head>
+  <body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>Stepik Travel</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+
+      <div class="container mt-3">
+
+        {% extends 'base.html' %}
+        {% block menu %} {{ block.super }}
+
+        <h1 class="display-5 mt-4">Летим <span data-test="from">{{ departure }}</span></h1>
+        <p class="mb-4" >
+            Найдено
+            <span data-test="tourcount">{{ number }}</span> {% if number >= 5 %}
+                                                              {{ tour_end.form_5 }}
+                                                            {% elif number >= 2 %}
+                                                              {{ tour_end.form_2 }}
+                                                            {% else %}}
+                                                              {{ tour_end.form_1 }}
+                                                            {% endif %},
+            от <span data-test="pricemin">{{ min_price }} &#8381;</span> до <span data-test="pricemax">{{ max_price }} &#8381;</span> и
+            от <span data-test="nightsmax">{{ min_nights }}</span> до <span data-test="nightsmax">{{ max_nights }}</span> ночей
+        </p>
+
+        <!-- CARDS -->
+
+        <div class="row mt-5 equal" data-test="cards">
+          {% for num_tour, tour in tours.items %}
+            <div class="col-4" data-test="card">
+              <div class="card mb-3">
+                <img src="{{ tour.picture }}" class="card-img-top img-fluid" style="height: 200px" data-test="picture">
+                <div class="card-body">
+                  <h5 class="card-title text-center">{{ tour.title }}</h5>
+                  <p class="text-center">{% for star in tour.stars %} {{ star }} {% endfor %}</p>
+                  <h5 class="card-title ">{{ tour.country }}</h5>
+                  <p class="card-text overflow-multiply">{{ tour.description }}</p>
+                  <div class="btn btn-sm btn-primary">
+                      {{ tour.date }}
+                  </div>
+                  <div class="btn btn-sm btn-primary">
+                      {{ tour.nights }} ночей
+                  </div>
+                  <div class="btn btn-sm btn-primary">
+                      {{ tour.price }} &#8381;
+                  </div>
+                  <a href="{% url 'tour_view' id=num_tour %}" class="stretched-link" data-test="tourlink"></a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+    {% endblock %}
+    </div>
+  </body>
+</html>
+</body>
+</html>

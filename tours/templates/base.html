@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {% block title %} CSSDesk {% endblock %}</title>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+</head>
+<body>
+    {% block menu %}
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" data-test="logo" href="/">Stepik Travel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+          <ul class="navbar-nav" data-test="navigation">
+            <li class="nav-item {% if request.path == '/departure/msk/' %}active{% endif %}">
+              <a class="nav-link" href="{% url 'departure_view' departure_name='msk' %}" data-test="navlink">Из Москвы </a>
+            </li>
+            <li class="nav-item {% if request.path == '/departure/spb/' %}active{% endif %}">
+              <a class="nav-link" href="{% url 'departure_view' departure_name='spb' %}" data-test="navlink">Из Петербурга</a>
+            </li>
+            <li class="nav-item {% if request.path == '/departure/nsk/' %}active{% endif %}">
+              <a class="nav-link" href="{% url 'departure_view' departure_name='nsk' %}" data-test="navlink">Из Новосибирска</a>
+            </li>
+            <li class="nav-item {% if request.path == '/departure/ekb/' %}active{% endif %}">
+              <a class="nav-link" href="{% url 'departure_view' departure_name='ekb' %}" data-test="navlink">Из Екатеринбурга</a>
+            </li>
+            <li class="nav-item {% if request.path == '/departure/kazan/' %}active{% endif %}">
+              <a class="nav-link" href="{% url 'departure_view' departure_name='kazan' %}" data-test="navlink">Из Казани</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    {% endblock %}
+</body>
+</html>

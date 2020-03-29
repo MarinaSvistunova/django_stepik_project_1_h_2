@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSSDesk</title>
+    <style type="text/css">
+      body {
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>Stepik Travel</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+
+    <div class="container mt-3">
+      {% extends 'base.html' %}
+      {% block menu %} {{ block.super }}
+
+      <!-- TITLE -->
+      <div class="jumbotron text-center mt-4 ">
+        <h1 class="display-4">{{ title }}</h1>
+        <p class="lead">{{ subtitle }}</p>
+        <p class="mt-5 w-50 mx-auto">{{ description }}</p>
+      </div>
+
+      <!-- CARDS -->
+      <div class="row mt-5 equal" data-test="cards">
+        {% for num_tour, tour in tours.items %}
+          <div class="col-4" data-test="card">
+            <div class="card mb-3" >
+              <img src="{{ tour.picture }}" class="card-img-top img-fluid" style="height: 200px" data-test="picture">
+              <div class="card-body">
+                <h5 class="card-title text-center">{{ tour.title }}</h5>
+                <p class="text-center">{% for star in tour.stars %} {{ star }} {% endfor %}</p>
+                <h5 class="card-title ">{{ tour.country }}</h5>
+                <p class="card-text overflow-multiply">{{ tour.description }}</p>
+                <a href="{% url 'tour_view' id=num_tour %}" class="btn btn-sm btn-primary stretched-link" data-test="tourlink">Подробнее...</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      {% endblock %}
+      </div>
+    </body>
+</html>
+</body>
+</html>
